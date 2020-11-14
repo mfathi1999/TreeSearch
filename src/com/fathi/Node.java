@@ -4,12 +4,14 @@ import java.lang.reflect.Array;
 
 public class Node {
     String name;
-    double[] position;
+    double[] position; // [0] => for X and [1] +> for y
+    double heuristic; // Estimation for distance
 
-    Node(double  X_pos, double Y_pos){
+    Node(String name , double  X_pos, double Y_pos){
         position = new double[2];
         position[0] = X_pos;
         position[1] = Y_pos;
+
     }
 
     double Heuristic(Node des) {

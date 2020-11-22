@@ -8,9 +8,11 @@ public class Graph {
 
 
     Graph (int size){
+        capacity = size;
         matrix = new double[size][size];
         nodeList = new Node[size];
         numberOfNodes = 0;
+
 //        for (int row=0;row<nodeList.length;row++){
 //            nodeList[row].name = Integer.toString(row);
 //        }
@@ -62,6 +64,26 @@ public class Graph {
     }
 
 
+
+    void Show_Test(){
+        for(int row=0 ; row<numberOfNodes;row++ ){
+            System.out.print( nodeList[row].name +" ==> ");
+            for(int col=0;col<numberOfNodes;col++){
+                System.out.print(matrix[row][col] + ", ");
+            }
+            System.out.println();
+
+        }
+
+    }
+
+    int TotalCost(){
+        return 0;
+    }
+
+    Node GetNode(int numOfList){
+        return nodeList[numOfList];
+    }
 
 
 

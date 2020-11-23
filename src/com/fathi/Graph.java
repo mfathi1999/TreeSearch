@@ -13,6 +13,8 @@ public class Graph {
         nodeList = new Node[size];
         numberOfNodes = 0;
 
+
+
 //        for (int row=0;row<nodeList.length;row++){
 //            nodeList[row].name = Integer.toString(row);
 //        }
@@ -63,6 +65,28 @@ public class Graph {
         return -1;
     }
 
+    int NumberOfNeighbors(int numOfList){
+        int num=0;
+        for (int col=0;col<numberOfNodes;col++){
+            if(matrix[numOfList][col]>0){
+                num++;
+
+            }
+        }
+        return num;
+    }
+
+    int[] getNeighbors(int numOfList){
+        int [] neighborList = new int[NumberOfNeighbors(numOfList)];
+        for(int col=0;col<numberOfNodes;col++){
+            int place=0;
+            if(matrix[numOfList][col]>0){
+                neighborList[place++]=col;
+            }
+        }
+        return neighborList;
+
+    }
 
 
     void Show_Test(){
@@ -77,17 +101,19 @@ public class Graph {
 
     }
 
-    int TotalCost(){
-        return 0;
+
+
+    double NodeDistance(int node1,int node2){
+
+        return matrix[node1][node2];
     }
 
     Node GetNode(int numOfList){
         return nodeList[numOfList];
     }
-
-
-
-
-
-
+//
+//    String [] ChildsOf (Node node){
+//
+//    }
+//
     }

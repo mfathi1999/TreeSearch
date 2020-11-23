@@ -7,6 +7,7 @@ public class A_Star {
     Graph map;
     int startNode;
     int endNode;
+    Node goal;
     PriorityQueue<QueueNodeModel> openSet;
 //    String startNode;
 //    String endNode;
@@ -15,6 +16,7 @@ public class A_Star {
         this.map = map;
         this.startNode = startNode;
         this.endNode = endNode;
+        goal = map.GetNode(this.endNode);
 //        openSet = new PriorityQueue<Node>(new NodeComparator());
     }
 
@@ -22,10 +24,12 @@ public class A_Star {
         this.map = map;
         this.startNode = map.SearchByname(startNode);
         this.endNode = map.SearchByname(endNode);
+        goal = map.GetNode(this.endNode);
+
 
 
         System.out.println("Start from '"+this.startNode+"' to '"+this.endNode+"'");
-        map.Show_Test();
+//        map.Show_Test();
 
     }
 
@@ -34,17 +38,38 @@ public class A_Star {
         openSet = new PriorityQueue<QueueNodeModel>(new NodeComparator());
 
         openSet.add(new QueueNodeModel(
-                map.GetNode(startNode) ,
+                map.GetNode(startNode),
                 map.GetNode(startNode).Heuristic(map.GetNode(endNode)) //+g(n)
         ));
 
-        while (!openSet.isEmpty()){
-            openSet.peek(); //not removed
+
+        QueueNodeModel current;
+        while (!openSet.isEmpty()) {
+            System.out.println("queue : " + openSet.peek().node.name);
+            current = openSet.poll();
+            System.out.println("current : " + current.node.name);
+            if (current.node == goal) {
+                return "I foud it!!";
+            }
+            int[] neighbors = map.getNeighbors(map.SearchByname(current.node.name));
+
+
+            for (int p : neighbors) {
+                Node nodeTemp = map.GetNode(p);
+                QueueNodeModel q = new QueueNodeModel(nodeTemp, nodeTemp.Heuristic(goal) + map.NodeDistance(map.SearchByname(current.node.name), p)); // incorrect f(n)
+//                openSet.add(map.GetNode(p))
+
+            }
+
         }
 
+
         return "";
+
+        }
+
     }
-}
+
 
     class NodeComparator implements Comparator<QueueNodeModel> {
 

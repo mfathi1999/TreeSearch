@@ -31,6 +31,7 @@ public class Main {
 
         A_Star a_star =new A_Star(graph,"A","F");
 
+        a_star.doAlgorithm();
 
 
         //show Graph

@@ -27,11 +27,13 @@ public class Main {
         graph.ConnectNode("D","F",4,true);
 
 
-        graph.Show_Test();
+//        graph.Show_Test();
 
         A_Star a_star =new A_Star(graph,"A","F");
 
-        a_star.doAlgorithm();
+        String message =a_star.doAlgorithm();
+        System.out.println(message);
+
 
 
         //show Graph

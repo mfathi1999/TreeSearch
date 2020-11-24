@@ -78,8 +78,9 @@ public class Graph {
 
     int[] getNeighbors(int numOfList){
         int [] neighborList = new int[NumberOfNeighbors(numOfList)];
+        System.out.println(NumberOfNeighbors(numOfList));
+        int place=0;
         for(int col=0;col<numberOfNodes;col++){
-            int place=0;
             if(matrix[numOfList][col]>0){
                 neighborList[place++]=col;
             }

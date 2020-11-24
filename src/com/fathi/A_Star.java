@@ -46,25 +46,33 @@ public class A_Star {
         QueueNodeModel current;
         while (!openSet.isEmpty()) {
             System.out.println("queue : " + openSet.peek().node.name);
+            System.out.println("goal : " + goal.name);
             current = openSet.poll();
             System.out.println("current : " + current.node.name);
             if (current.node == goal) {
                 return "I foud it!!";
             }
             int[] neighbors = map.getNeighbors(map.SearchByname(current.node.name));
-
+            System.out.println("num of neighbor = "+neighbors.length);
 
             for (int p : neighbors) {
+                System.out.print(p+",");
+
                 Node nodeTemp = map.GetNode(p);
-                QueueNodeModel q = new QueueNodeModel(nodeTemp, nodeTemp.Heuristic(goal) + map.NodeDistance(map.SearchByname(current.node.name), p)); // incorrect f(n)
-//                openSet.add(map.GetNode(p))
+                QueueNodeModel q = new QueueNodeModel(nodeTemp, nodeTemp.Heuristic(goal) + map.NodeDistance(map.SearchByname(current.node.name), p) + current.pathCost);
+                q.SetPathCost(q.prior - nodeTemp.Heuristic(goal));
+                q.SetParent(p);
+
+                openSet.add(q);
 
             }
+            System.out.println();
+
 
         }
 
 
-        return "";
+        return "not founded !!";
 
         }
 
@@ -89,10 +97,22 @@ public class A_Star {
 
 class QueueNodeModel{
     Node node;
-    double prior;
+    double prior; // => f(n)
+    int parent;
+    double pathCost;// => g(n)
 
     QueueNodeModel(Node node , double prior){
         this.node=node;
         this.prior=prior;
+        this.parent=-1;
+        this.pathCost=0;
+    }
+
+    void SetParent(int parent){
+        this.parent=parent;
+    }
+    void SetPathCost(double cost){
+        this.pathCost=cost;
+
     }
 }

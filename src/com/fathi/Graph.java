@@ -39,7 +39,7 @@ public class Graph {
     // direct = true :directed path
     // direct = false :undirected path
     void ConnectNode(String from , String to , double weight  , boolean direct  ){
-        if (!direct){//undirect path
+        if (!direct){//undirected path
 
             matrix[SearchByname(from)][SearchByname(to)] = weight;
             matrix[SearchByname(to)][SearchByname(from)] = weight;

@@ -32,6 +32,9 @@ public class A_Star {
 //        map.Show_Test();
 
     }
+    public void ShowRout(){
+
+    }
 
     String doAlgorithm() {
 
@@ -45,15 +48,17 @@ public class A_Star {
 
         QueueNodeModel current;
         while (!openSet.isEmpty()) {
-            System.out.println("queue : " + openSet.peek().node.name);
+            System.out.println("node top of queue : " + openSet.peek().node.name);
             System.out.println("goal : " + goal.name);
+
             current = openSet.poll();
-            System.out.println("current : " + current.node.name);
+            //System.out.println("current : " + current.node.name);
             if (current.node == goal) {
                 return "I foud it!!";
+                //show rout
             }
             int[] neighbors = map.getNeighbors(map.SearchByname(current.node.name));
-            System.out.println("num of neighbor = "+neighbors.length);
+            //System.out.println("num of neighbor = "+neighbors.length);
 
             for (int p : neighbors) {
                 System.out.print(p+",");

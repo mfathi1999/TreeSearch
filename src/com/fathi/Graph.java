@@ -15,9 +15,7 @@ public class Graph {
 
 
 
-//        for (int row=0;row<nodeList.length;row++){
-//            nodeList[row].name = Integer.toString(row);
-//        }
+
     }
 
     boolean AddNode(String name,int Xpos , int Ypos){
